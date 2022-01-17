@@ -27,10 +27,11 @@ public class BounceLogic : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //inDirection = rb.velocity;
-        //outDirection = Vector2.Reflect(inDirection, collision.contacts[0].normal);
-        //rb.velocity = outDirection;
-
+        //destroy any balls that hit the bottom
+        if (collision.gameObject.CompareTag("Bottom"))
+        {
+            Destroy(gameObject);
+        }
 
     }
 
