@@ -6,15 +6,15 @@ using TMPro;
 public class BlockScore : MonoBehaviour
 {
 
-    private GameObject blockCanvas; //The canvas over the block
-    private GameObject blockText;   //The text on the canvas
+    private Transform blockCanvas; //The canvas over the block
+    private Transform blockText;   //The text on the canvas
     private int textVal; 
 
     // Start is called before the first frame update
     void Start()
     {
-        blockCanvas = GameObject.Find("Canvas").gameObject; //get objects
-        blockText = GameObject.Find("ValueText").gameObject;
+        blockCanvas = gameObject.transform.GetChild(0); //get a reference to the canvas
+        blockText = blockCanvas.transform.GetChild(0);  //reference to the TextMesh
     }
 
     // Update is called once per frame
@@ -29,7 +29,20 @@ public class BlockScore : MonoBehaviour
         {
             textVal = int.Parse(blockText.GetComponent<TextMeshProUGUI>().text);    //reduce score by 1
             textVal -= 1;
-            blockText.GetComponent<TextMeshProUGUI>().text = textVal.ToString();
+
+            //if the score reaches 0 destroy the block 
+            if (textVal <= 0)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                blockText.GetComponent<TextMeshProUGUI>().text = textVal.ToString();    //update the text
+            }
+
+              
+
+            
         }
 
     }
