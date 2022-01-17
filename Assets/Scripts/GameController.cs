@@ -37,6 +37,11 @@ public class GameController : MonoBehaviour
         PlayerPrefs.SetInt("currentTurn", turnNumber); ;
     }
 
+    public void getPlusOne()
+    {
+        numBalls += 1;
+    }
+
 
     void spawnRow(int turnNumber)
     {
