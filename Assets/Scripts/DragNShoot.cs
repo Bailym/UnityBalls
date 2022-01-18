@@ -62,16 +62,15 @@ public class DragNShoot : MonoBehaviour
             //TODO: Spawn all of a players balls.
 
             GameObject newBall;
-            Vector3 currentPos = transform.position;
-
-            for (int i = 0;i <= gc.numBalls; i++)
+            int ballsLeft = gc.numBalls;
             {
-                newBall = Instantiate(gameObject, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-                newBall.GetComponent<Rigidbody2D>().velocity = rb.velocity;
+                //spawn in all balls
+                for (int i=0;i< ballsLeft; i++)
+                {
+                    newBall = Instantiate(gameObject, objPoint, Quaternion.identity);
+                    newBall.GetComponent<Rigidbody2D>().AddForce(rb.velocity * 55); //make the new balls slighly faster so they dont overlap
+                }
             }
-
-
-
         }
     }
 

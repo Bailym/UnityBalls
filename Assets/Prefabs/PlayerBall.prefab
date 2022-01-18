@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fdd70d350daf2c458b1f608c3478e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerMultiplier: 4
+  powerMultiplier: 5
   rb: {fileID: 1417760921530957964}
   lr: {fileID: 0}
   minPower: {x: -8, y: -8}
