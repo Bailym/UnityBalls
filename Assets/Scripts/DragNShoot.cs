@@ -11,6 +11,7 @@ public class DragNShoot : MonoBehaviour
 
     public Vector2 minPower;    //The min power
     public Vector2 maxPower;    //max power. Stops the user getting more power on a bigger screen.
+    private GameController gc;
 
     Camera cam;
     Vector2 force;  //calculated force
@@ -21,6 +22,7 @@ public class DragNShoot : MonoBehaviour
     private void Awake()
     {
         lr = GetComponent<LineRenderer>();  //reference for the line renderer.
+        gc = FindObjectOfType<GameController>();
     }
 
     private void Start()
@@ -56,6 +58,28 @@ public class DragNShoot : MonoBehaviour
 
             rb.AddForce(force * powerMultiplier, ForceMode2D.Impulse);    //add the force to the rigidbody
 
+
+            //TODO: Spawn all of a players balls.
+
+            GameObject newBall;
+            Vector3 currentPos = transform.position;
+
+            for (int i = 0;i <= gc.numBalls; i++)
+            {
+                newBall = Instantiate(gameObject, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                newBall.GetComponent<Rigidbody2D>().velocity = rb.velocity;
+            }
+
+
+
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ball")
+        {
+            Physics2D.IgnoreCollision(collision.collider, gameObject.GetComponent<CircleCollider2D>());
         }
     }
 
