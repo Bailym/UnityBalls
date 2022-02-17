@@ -58,14 +58,12 @@ public class DragNShoot : MonoBehaviour
 
             rb.AddForce(force * powerMultiplier, ForceMode2D.Impulse);    //add the force to the rigidbody
 
-
-            //TODO: Spawn all of a players balls.
-
+            //Where the balls are created
             GameObject newBall;
             int ballsLeft = gc.numBalls;
             {
                 //spawn in all balls
-                for (int i=0;i< ballsLeft; i++)
+                for (int i=1;i< ballsLeft; i++)
                 {
                     newBall = Instantiate(gameObject, objPoint, Quaternion.identity);
                     newBall.GetComponent<Rigidbody2D>().AddForce(rb.velocity * 55); //make the new balls slighly faster so they dont overlap
