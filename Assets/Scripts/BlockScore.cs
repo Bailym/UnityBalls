@@ -8,13 +8,17 @@ public class BlockScore : MonoBehaviour
 
     private Transform blockCanvas; //The canvas over the block
     private Transform blockText;   //The text on the canvas
-    private int textVal; 
+    private int textVal;
+    private GameController gc;
 
     // Start is called before the first frame update
     void Start()
     {
+        gc = FindObjectOfType<GameController>(); //reference to controller
         blockCanvas = gameObject.transform.GetChild(0); //get a reference to the canvas
         blockText = blockCanvas.transform.GetChild(0);  //reference to the TextMesh
+
+        textVal = gc.turnNumber + Random.Range(1,3);    //spawn with a value relative to the current turn + 1,2 or 3
     }
 
     // Update is called once per frame

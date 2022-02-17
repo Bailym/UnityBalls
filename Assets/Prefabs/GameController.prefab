@@ -43,3 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04bb9fa3d35e4684b902ce0cce0064f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnNumber: 0
+  numBalls: 0
+  lastBallPos: {x: 0, y: 0, z: 0}
+  playerBallPrefab: {fileID: 956507502206865175, guid: 113e92733f5d50545941819e27e02746, type: 3}
+  newBlockPrefab: {fileID: 2164276171164943685, guid: 892eb042b19b8344b9f5f7033beef498, type: 3}

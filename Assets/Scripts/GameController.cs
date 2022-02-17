@@ -8,7 +8,8 @@ public class GameController : MonoBehaviour
     public int numBalls;
     private int ballsInPlay;
     public Vector3 lastBallPos;
-    public Transform playerBallPrefab;
+    public GameObject playerBallPrefab;
+    public GameObject newBlockPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,12 +43,42 @@ public class GameController : MonoBehaviour
 
     void nextTurn()
     {
+
         turnNumber += 1;
         PlayerPrefs.SetInt("currentTurn", turnNumber);
 
+        GameObject[] newBlocksList = new GameObject[7];
+        bool doFillSpace;   //Whethe or not to add a new block to the list (dont want to always spawn a whole line of blocks)
+
+        //add up to 8 blocks
+        for (int i = 0; i < newBlocksList.Length; i++)
+        {
+            doFillSpace = true;
+                //Random.value > 0.5f;  //random boolean
+
+            if (doFillSpace)
+            {
+                newBlocksList[i] = newBlockPrefab;  //add a block to the list.
+            }
+
+        }
+
+        Vector3[] blockSpawns = new Vector3[] {new Vector3(-3.09375f,4.5f,5) , new Vector3(-2.065f, 4.5f, 5), new Vector3(-1.05f, 4.5f, 5), new Vector3(-0.0075f, 4.5f, 5), new Vector3(1.02125f, 4.5f, 5), new Vector3(2.05f, 4.5f, 5), new Vector3(3.07875f, 4.5f, 5) };
+        
+
         Vector3 nextTurnStartPos = new Vector3(lastBallPos.x, -4f, lastBallPos.z);  //position to spawn the next playerball (y must be the same as before)
 
-        Instantiate(playerBallPrefab, nextTurnStartPos, Quaternion.identity);
+        Instantiate(playerBallPrefab, nextTurnStartPos, Quaternion.identity);   //Spawn the blocks
+
+        //add up to 8 blocks
+        for (int i = 0; i < newBlocksList.Length; i++)
+        {
+            if (newBlocksList[i])
+            {
+                Instantiate(newBlocksList[i], blockSpawns[i], Quaternion.identity);
+            }
+        }
+
 
     }
 
