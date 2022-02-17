@@ -47,14 +47,25 @@ public class GameController : MonoBehaviour
         turnNumber += 1;
         PlayerPrefs.SetInt("currentTurn", turnNumber);
 
+        //Move blocks down
+        GameObject[] blocks = GameObject.FindGameObjectsWithTag("Block");       //list of blocks in play
+        int numBlocks = GameObject.FindGameObjectsWithTag("Block").Length;    //count the number of blocks
+
+        //move blocks don by 1 in the y axis
+        for (int i = 0; i < numBlocks; i++)
+        {
+            Vector3 currentPos = blocks[i].transform.position;
+            blocks[i].transform.position = new Vector2(currentPos.x, currentPos.y - 1);
+        }
+
+
         GameObject[] newBlocksList = new GameObject[7];
         bool doFillSpace;   //Whethe or not to add a new block to the list (dont want to always spawn a whole line of blocks)
 
         //add up to 8 blocks
         for (int i = 0; i < newBlocksList.Length; i++)
         {
-            doFillSpace = true;
-                //Random.value > 0.5f;  //random boolean
+            doFillSpace = Random.value > 0.5f;  //random boolean
 
             if (doFillSpace)
             {
